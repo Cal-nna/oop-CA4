@@ -7,6 +7,7 @@ public class Expense {
     private String title;
     private String category;
     private double amount;
+    private Date dateIncurred;
 
     public Expense(int expenseID, String title, String category, double amount, Date dateIncurred) {
         this.expenseID = expenseID;
@@ -35,9 +36,6 @@ public class Expense {
     public void setExpenseID(int expenseID) {
         this.expenseID = expenseID;
     }
-
-    private Date dateIncurred;
-
 
 
     public int getExpenseID() { return expenseID; }
