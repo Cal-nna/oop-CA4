@@ -54,6 +54,11 @@ public class ExpenseTrackerApp {
                     Date date = Date.valueOf(scanner.next());
                     incomeDAO.addIncome(new Income(0, title, amount, date));
                 }
+                case 6 -> {
+                    System.out.print("Enter the ID of the income you wish to delete: ");
+                    int id = scanner.nextInt();
+                    incomeDAO.deleteIncome(id);
+                }
 
                 case 7 -> System.exit(0);
                 default -> System.out.println("Invalid choice!");
