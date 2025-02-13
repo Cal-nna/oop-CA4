@@ -39,6 +39,11 @@ public class ExpenseTrackerApp {
                     Date date = Date.valueOf(scanner.next());
                     expenseDAO.addExpense(new Expense(0, title, category, amount, date));
                 }
+                case 3 -> {
+                    System.out.print("Enter the ID of the expense you wish to delete: ");
+                    int id = scanner.nextInt();
+                    expenseDAO.deleteExpense(id);
+                }
                 case 7 -> System.exit(0);
                 default -> System.out.println("Invalid choice!");
             }
