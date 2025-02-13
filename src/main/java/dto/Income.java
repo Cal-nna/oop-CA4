@@ -40,10 +40,10 @@ public class Income {
         this.incomeID = incomeID;
     }
 
-    public Income(int incomeID, double amount, String title, Date dateEarned) {
+    public Income(int incomeID, String title, double amount,  Date dateEarned) {
         this.incomeID = incomeID;
-        this.amount = amount;
         this.title = title;
+        this.amount = amount;
         this.dateEarned = dateEarned;
     }
 

@@ -40,8 +40,8 @@ public class IncomeDAO {
             while (rs.next()) {
                 incomes.add(new Income(
                                         rs.getInt("incomeID"),
-                        rs.getDouble("amount"),
                         rs.getString("title"),
+                        rs.getDouble("amount"),
                                         rs.getDate("dateEarned")
                                 ));
             }

@@ -3,7 +3,7 @@ package Main;
 import dao.ExpenseDAO;
 import dao.IncomeDAO;
 import dto.Expense;
-
+import dto.Income;
 import java.sql.Date;
 import java.util.Scanner;
 
@@ -44,6 +44,17 @@ public class ExpenseTrackerApp {
                     int id = scanner.nextInt();
                     expenseDAO.deleteExpense(id);
                 }
+                case 4 -> incomeDAO.getAllIncome().forEach(System.out::println);
+                case 5 -> {
+                    System.out.print("Enter title of income: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter amount: ");
+                    double amount = scanner.nextDouble();
+                    System.out.print("Enter date (YYYY-MM-DD): ");
+                    Date date = Date.valueOf(scanner.next());
+                    incomeDAO.addIncome(new Income(0, title, amount, date));
+                }
+
                 case 7 -> System.exit(0);
                 default -> System.out.println("Invalid choice!");
             }
