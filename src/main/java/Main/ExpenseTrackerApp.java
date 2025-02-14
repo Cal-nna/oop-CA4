@@ -5,7 +5,9 @@ import dao.IncomeDAO;
 import dto.Expense;
 import dto.Income;
 import java.sql.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import Exceptions.DaoException;
 
 public class ExpenseTrackerApp {
     public static void main(String[] args) {
@@ -28,7 +30,7 @@ public class ExpenseTrackerApp {
 
             switch (choice) {
                 case 1 -> expenseDAO.getAllExpenses().forEach(System.out::println);
-                case 2 -> {
+                case 2 -> {try{
                     System.out.print("Enter title of expense: ");
                     String title = scanner.nextLine();
                     System.out.print("Enter category: ");
@@ -38,14 +40,22 @@ public class ExpenseTrackerApp {
                     System.out.print("Enter date (YYYY-MM-DD): ");
                     Date date = Date.valueOf(scanner.next());
                     expenseDAO.addExpense(new Expense(0, title, category, amount, date));
-                }
-                case 3 -> {
+                    System.out.println("Successfully added expense");
+                }catch (InputMismatchException e) {
+                    System.out.println("Invalid input, ensure that you have given a valid number only");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid input, make sure the date is of YYYY-MM-DD format");
+                } }
+                case 3 -> {try{
                     System.out.print("Enter the ID of the expense you wish to delete: ");
                     int id = scanner.nextInt();
                     expenseDAO.deleteExpense(id);
-                }
+                    System.out.println("Successfully deleted");
+                }catch (InputMismatchException e) {
+                    System.out.println("Invalid input, Please enter a valid ID");
+                } }
                 case 4 -> incomeDAO.getAllIncome().forEach(System.out::println);
-                case 5 -> {
+                case 5 -> {try{
                     System.out.print("Enter title of income: ");
                     String title = scanner.nextLine();
                     System.out.print("Enter amount: ");
@@ -53,12 +63,20 @@ public class ExpenseTrackerApp {
                     System.out.print("Enter date (YYYY-MM-DD): ");
                     Date date = Date.valueOf(scanner.next());
                     incomeDAO.addIncome(new Income(0, title, amount, date));
-                }
-                case 6 -> {
+                    System.out.println("Successfully added income");
+                }catch (InputMismatchException e) {
+                    System.out.println("Invalid input, ensure that you have given a valid number only");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid input, make sure the date is of YYYY-MM-DD format");
+                } }
+                case 6 -> {try{
                     System.out.print("Enter the ID of the income you wish to delete: ");
                     int id = scanner.nextInt();
                     incomeDAO.deleteIncome(id);
-                }
+                    System.out.println("Successfully deleted");
+                }catch (InputMismatchException e) {
+                    System.out.println("Invalid input, Please enter a valid ID");
+                } }
 
                 case 7 -> System.exit(0);
                 default -> System.out.println("Invalid choice!");
